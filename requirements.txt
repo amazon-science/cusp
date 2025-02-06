@@ -1,0 +1,7 @@
+geoopt==0.5.0
+GraphRicciCurvature==0.5.3.2
+networkx==3.2.1
+numpy==2.2.2
+scikit_learn==1.4.2
+torch==2.4.0
+torch_geometric==2.6.1
