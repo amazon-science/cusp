@@ -1,10 +1,13 @@
 ## Spectro-Riemannian Graph Neural Networks
 Official code repository for [Spectro-Riemannian Graph Neural Networks](https://www.arxiv.org/abs/2502.00401) (ICLR 2025).
 
+<p align="center">
+  <img width="800px" src="imgs/model.png" >
+</p>
 
 ## 🛠 Dependencies and Installation
 
-- [geoopt](https://github.com/geoopt/geoopt) `0.5.0` (For Riemannian optimization and algebra)
+- [geoopt](https://github.com/geoopt/geoopt) `0.5.0` (For Riemannian optimization and implementation of $\kappa$-stereographic model)
 - [GraphRicciCurvature](https://github.com/saibalmars/GraphRicciCurvature) `0.5.3.2` (For computing Ollivier-Ricci Curvature)
 - torch `2.4.0` (Implementation in PyTorch)
 - torch_geometric `2.6.1`
