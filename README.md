@@ -1,5 +1,5 @@
 ## Spectro-Riemannian Graph Neural Networks
-Official code repository for [Spectro-Riemannian Graph Neural Networks](https://www.arxiv.org/abs/2502.00401) (ICLR 2025).
+Official implementation of [Spectro-Riemannian Graph Neural Networks](https://www.arxiv.org/abs/2502.00401) (ICLR 2025).
 
 <p align="center">
   <img width="800px" src="imgs/model.png" >
@@ -19,6 +19,27 @@ git clone https://github.com/amazon-science/cusp.git
 
 # install python dependencies
 pip3 install -r requirements.txt
+```
+## 💽 Datasets
+We have performed extensive experimentation and ablation studies across 8 datasets $-$ Homophilic (`Cora`, `Citeseer`, `PubMed`) and Heterophilic (`Chameleon`, `Actor`, `Squirrel`, `Texas`, `Cornell`). The datasets are downloaded automatically from `torch_geometric` and saved in `data/` directory. Consider the following script from `train.py`.
+
+```python
+datasets = {
+"Cora": Planetoid(root="data/Cora", name="Cora", transform=T.ToUndirected()),
+"Citeseer": Planetoid(root="data/Citeseer", name="Citeseer", transform=T.ToUndirected()),
+"PubMed": Planetoid(root="data/PubMed", name="PubMed", transform=T.ToUndirected()),
+"Chameleon": WikipediaNetwork(root="data/WikipediaNetwork", name="chameleon", transform=T.ToUndirected()),
+"Actor": Actor(root="data/Actor", transform=T.ToUndirected()),
+"Squirrel": WikipediaNetwork(root="data/WikipediaNetwork", name="squirrel", transform=T.ToUndirected()),
+"Texas": WebKB(root="data/WebKB", name="Texas", transform=T.ToUndirected()),
+"Cornell": WebKB(root="data/WebKB", name="Cornell", transform=T.ToUndirected())}
+```
+
+## 🔂 Training
+
+
+```python 
+train.py --dataset Cora --epochs 30 --model cusp --optimizer adam --lr 4e-3 --num_runs 2 --use_curvature_encoding --use_cusp_laplacian --use_cusp_pooling --K 10 --task node_classification 
 ```
 
 ## 📞 Contact
