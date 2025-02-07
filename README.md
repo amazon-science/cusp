@@ -52,52 +52,37 @@ The following table describes some important optional arguments that control dif
 | `use_cusp_laplacian`     | Uses the **Cusp Laplacian** (default). If not set, the model falls back to using the standard graph Laplacian. |
 |`K`| Number of filters in the filterbank.|
 |`manifold_config`| Product manifold signature to use, for learning representations.|
+|`d_f`|Dimension of the functional curvature encoding.|
 
 ### Example Usage
 To run the full `CUSP` model for the task of node classification using Riemannian Adam optimizer (`radam`), with `K=10` filters, on the `Cora` dataset, for the product manifold signature $\mathbb{H}^{16} \times \mathbb{H}^{16}\times \mathbb{S}^{16} \times\mathbb{E}^{16}$,  use the below script:
-```python 
-train.py  --dataset Cora #Modify the dataset to be used
-          --epochs 100 
-          --model cusp
-          --optimizer radam #Using Riemannian Adam for optimization 
-          --lr 4e-3 #Set learning rate
-          --num_runs 2 #Set number of trials (or runs)
-          --use_curvature_encoding #Using curvature encoding
-          --use_cusp_laplacian #Using Cusp Laplacian
-          --use_cusp_pooling #Using Cusp Pooling
-          --K 10 #Number of filters in the filerbank
-          --manifold_config H16H16S16E16 #Signature of product manifold
-          --task node_classification #Choose the downstream task
+```python
+python train.py --dataset Cora \
+                --epochs 100 \
+                --model cusp \
+                --optimizer radam \
+                --lr 0.01 \
+                --num_runs 1 \
+                --use_curvature_encoding \
+                --use_cusp_laplacian \
+                --use_cusp_pooling \
+                --K 10 \
+                --d_f 64 \
+                --ricci_alpha 0.5 \
+                --manifold_config H16H16S16E16 \
+                --task node_classification
 ```
 
 To train the **CUSP model** with different ablations use the following commands:
 
 - Euclidean variant without Cusp pooling and curvature encoding for node classification.
 ```python 
-train.py  --dataset Cora 
-          --model cusp 
-          --epochs 30 
-          --lr 4e-3 
-          --num_runs 2 
-          --use_euclidean_variant 
-          --use_cusp_laplacian 
-          --manifold_config H16H16S16E16 
-          --K 10
+python train.py --dataset Cora --model cusp --epochs 30 --lr 4e-3 --num_runs 2 --use_euclidean_variant --use_cusp_laplacian --manifold_config H16H16S16E16 --K 10
 ```
 
 - Full `CUSP` without Cusp Laplacian for link prediction.
 ```python 
-train.py  --dataset Cora
-          --epochs 30 
-          --model cusp 
-          --optimizer radam 
-          --lr 4e-3 
-          --num_runs 2 
-          --use_curvature_encoding 
-          --use_cusp_pooling 
-          --K 10 
-          --task node_classification 
-          --manifold_config H16H16S16E16
+python train.py --dataset Cora --epochs 30 --model cusp --optimizer radam --lr 4e-3 --num_runs 2 --use_curvature_encoding --use_cusp_pooling --K 10 --task node_classification --manifold_config H16H16S16E16
 ```
 ## 📞 Contact
 If you have any questions or issues, please feel free to reach out to [Karish Grover](https://karish-grover.github.io/) at <a href="mailto:karishg@cs.cmu.edu">karishg@cs.cmu.edu</a>.

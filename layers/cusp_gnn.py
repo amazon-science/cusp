@@ -5,6 +5,7 @@ from utils.data_utils import parse_manifold_config
 import geoopt
 from torch_geometric.nn import MessagePassing
 from torch_geometric.nn.conv.gcn_conv import gcn_norm
+import numpy as np
 
 class CuspGNN(nn.Module):
     def __init__(self, input_dim, manifold_config_str, K, alpha, Init, Gamma=None, dropout=0.5, dprate=0.2,
@@ -36,14 +37,16 @@ class CuspGNN(nn.Module):
             self.manifold_dims = [total_dim]  # Update manifold_dims
         else:
             for manifold_type, dim in manifolds_config:
+                curvature_init = np.random.uniform(0, 1) #If you don't want to randomly init curvature, just set c, k = 1
+                # curvature_init = 1
                 if manifold_type == 'hyperbolic':
                     # Use PoincareBall with learnable curvature
-                    manifold = geoopt.PoincareBall(c=1.0, learnable=True)
+                    manifold = geoopt.PoincareBall(c=curvature_init, learnable=True)
                 elif manifold_type == 'spherical':
                     # Use SphereProjection with learnable curvature
-                    manifold = geoopt.SphereProjection(k=1.0, learnable=True)
+                    manifold = geoopt.SphereProjection(k=curvature_init, learnable=True)
                 elif manifold_type == 'euclidean':
-                    # Use Stereographic with zero curvature
+                    # Use Stereographic with zero curvature: Learnable is set to false
                     manifold = geoopt.Stereographic(k=0.0, learnable=False)
                 else:
                     raise ValueError(f"Unknown manifold type: {manifold_type}")
