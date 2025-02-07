@@ -48,7 +48,7 @@ The following table describes some important optional arguments that control dif
 |---------------------------|-------------|
 | `use_curvature_encoding` | Enables **functional curvature encoding** for improved representation learning. |
 | `use_cusp_pooling`       | Uses curvature-based positional encoding in **Cusp Pooling**, allowing hierarchical attention over embeddings. |
-| `use_euclidean_variant`  | Forces the **Euclidean variant** of the model, where all manifolds are Euclidean. |
+| `euclidean_variant`  | Forces the **Euclidean variant** of the model, where all manifolds are Euclidean. |
 | `use_cusp_laplacian`     | Uses the **Cusp Laplacian** (default). If not set, the model falls back to using the standard graph Laplacian. |
 |`K`| Number of filters in the filterbank.|
 |`manifold_config`| Product manifold signature to use, for learning representations.|
