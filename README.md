@@ -77,7 +77,7 @@ To train the **CUSP model** with different ablations use the following commands:
 
 - Euclidean variant without Cusp pooling and curvature encoding for node classification.
 ```python 
-python train.py --dataset Cora --model cusp --epochs 30 --lr 4e-3 --num_runs 2 --use_euclidean_variant --use_cusp_laplacian --manifold_config H16H16S16E16 --K 10
+python train.py --dataset Cora --model cusp --epochs 30 --lr 4e-3 --num_runs 2 --euclidean_variant --use_cusp_laplacian --manifold_config H16H16S16E16 --K 10
 ```
 
 - Full `CUSP` without Cusp Laplacian for link prediction.
