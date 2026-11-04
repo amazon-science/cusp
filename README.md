@@ -107,6 +107,6 @@ If you think that this work is helpful, please leave a star ⭐️ and cite our 
       eprint={2502.00401},
       archivePrefix={arXiv},
       primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2502.00401}, 
+      url={https://arxiv.org/abs/2502.00401},
 }
 ```
